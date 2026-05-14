@@ -56,7 +56,7 @@
                                 <td>S/ <?php echo number_format($c['total_pagado'], 2); ?></td>
                                 <td>
                                     <?php $saldo = $c['saldo_pendiente']; ?>
-                                    <span class="fw-bold <?php echo $saldo > 0 ? 'text-danger' : 'text-success'; ?>">
+                                    <span class="fw-bold <?php echo $saldo > 0 ? 'text-success' : 'text-danger'; ?>">
                                         S/ <?php echo number_format($saldo, 2); ?>
                                     </span>
                                 </td>
