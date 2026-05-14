@@ -84,51 +84,42 @@ CREATE TABLE pagos (
 -- Usuario administrador (contraseña: admin123)
 -- La contraseña se guarda con MD5, igual que en Login.php
 INSERT INTO usuarios (nombre, email, password) VALUES
-('Administrador KLETA', 'admin@kleta.com', MD5('admin123'));
+('Administrador KLETA',   'admin@kleta.com',   MD5('admin123')),
+('Carlos Admin',          'carlos@kleta.com',  MD5('carlos123')),
+('María Caja',            'maria@kleta.com',   MD5('maria123')),
+('Luis Supervisor',       'luis@kleta.com',    MD5('luis123'));
 
 -- Clientes de ejemplo
 INSERT INTO clientes (nombre, telefono, direccion, tipo_pago) VALUES
-('Juan Pérez',    '987654321', 'Av. Lima 123',        'mensual'),
-('María García',  '912345678', 'Jr. Cusco 456',       'semanal'),
-('Carlos López',  '955555555', 'Calle Arequipa 789',  'diario');
+('Juan Pérez',       '987654321',  'Av. Lima 123',         'mensual'),
+('María García',     '912345678',  'Jr. Cusco 456',        'semanal'),
+('Carlos López',     '955555555',  'Calle Arequipa 789',   'diario'),
+('Ana Torres',       '944111222',  'Av. Primavera 101',    'mensual'),
+('Pedro Ramírez',    '955222333',  'Jr. Los Olivos 202',   'semanal'),
+('Lucía Fernández',  '966333444',  'Calle San Martín 55',  'diario'),
+('Miguel Castro',    '977444555',  'Av. Grau 890',         'mensual'),
+('Rosa Mendoza',     '988555666',  'Jr. Libertad 450',     'semanal');
 
 -- Platos del menú
 INSERT INTO platos (nombre, descripcion, precio) VALUES
-('Menú del día',     'Sopa + segundo + refresco', 8.50),
-('Lomo saltado',     'Con arroz y papas fritas',  12.00),
-('Pollo a la brasa', '1/4 de pollo con papas',    10.00),
-('Jugo de naranja',  'Vaso grande natural',         3.00),
-('Agua mineral',     'Botella 625ml',               2.00);
+('Menú del día',        'Sopa + segundo + refresco',   8.50),   --1
+('Lomo saltado',        'Con arroz y papas fritas',    12.00),  --2
+('Pollo a la brasa',    '1/4 de pollo con papas',      10.00),  --3
+('Jugo de naranja',     'Vaso grande natural',         3.00),   --4
+('Agua mineral',        'Botella 625ml',               2.00),   --5
+('Arroz Chaufa',        'Pollo y verduras salteadas',  11.00),  --6
+('Tallarines Verdes',   'Con bistec apanado',          13.50),  --7
+('Ají de Gallina',      'Con arroz blanco y huevo',    12.50),  --8
+('Ceviche',             'Pescado fresco con camote',   15.00),  --9
+('Inca Kola',           'Botella personal 500ml',      3.50),   --10
+('Chicha Morada',       'Vaso grande helado',          2.50);   --11
 
 -- Consumos de prueba (Juan Pérez comió hoy)
 INSERT INTO consumos (cliente_id, plato_id, cantidad, precio_unit, fecha) VALUES
-(1, 1, 1, 8.50, CURDATE()),   -- 1 Menú del día
-(1, 4, 1, 3.00, CURDATE());   -- 1 Jugo de naranja
+(1, 1, 1, 8.50, CURDATE()),    --1 Menú del día
+(1, 4, 1, 3.00, CURDATE());    --1 Jugo de naranja
+(5, 7, 2, 13.50, CURDATE());   --1 Tallerines Verdes
 
 -- Pago de prueba
 INSERT INTO pagos (cliente_id, monto, tipo_comprobante, fecha_pago, observacion) VALUES
 (1, 11.50, 'boleta', CURDATE(), 'Pago del consumo del día');
-
--- ============================================================
--- CONSULTAS ÚTILES
--- ============================================================
-
--- Ver cuánto debe cada cliente (total consumido - total pagado)
--- SELECT
---     c.nombre,
---     COALESCE(SUM(cn.cantidad * cn.precio_unit), 0) AS total_consumido,
---     COALESCE(SUM(pg.monto), 0)                     AS total_pagado,
---     COALESCE(SUM(cn.cantidad * cn.precio_unit), 0)
---       - COALESCE(SUM(pg.monto), 0)                 AS saldo_pendiente
--- FROM clientes c
--- LEFT JOIN consumos cn ON cn.cliente_id = c.id
--- LEFT JOIN pagos    pg ON pg.cliente_id = c.id
--- GROUP BY c.id, c.nombre;
-
--- Ver el consumo del día con nombre de cliente y plato
--- SELECT c.nombre AS cliente, p.nombre AS plato, cn.cantidad, cn.precio_unit,
---        (cn.cantidad * cn.precio_unit) AS subtotal
--- FROM consumos cn
--- JOIN clientes c ON c.id = cn.cliente_id
--- JOIN platos   p ON p.id = cn.plato_id
--- WHERE cn.fecha = CURDATE();
