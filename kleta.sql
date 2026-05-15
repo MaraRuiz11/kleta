@@ -102,24 +102,26 @@ INSERT INTO clientes (nombre, telefono, direccion, tipo_pago) VALUES
 
 -- Platos del menú
 INSERT INTO platos (nombre, descripcion, precio) VALUES
-('Menú del día',        'Sopa + segundo + refresco',   8.50),   --1
-('Lomo saltado',        'Con arroz y papas fritas',    12.00),  --2
-('Pollo a la brasa',    '1/4 de pollo con papas',      10.00),  --3
-('Jugo de naranja',     'Vaso grande natural',         3.00),   --4
-('Agua mineral',        'Botella 625ml',               2.00),   --5
-('Arroz Chaufa',        'Pollo y verduras salteadas',  11.00),  --6
-('Tallarines Verdes',   'Con bistec apanado',          13.50),  --7
-('Ají de Gallina',      'Con arroz blanco y huevo',    12.50),  --8
-('Ceviche',             'Pescado fresco con camote',   15.00),  --9
-('Inca Kola',           'Botella personal 500ml',      3.50),   --10
-('Chicha Morada',       'Vaso grande helado',          2.50);   --11
+('Menú del día',        'Sopa + segundo + refresco',   8.50),   
+('Lomo saltado',        'Con arroz y papas fritas',    12.00),  
+('Pollo a la brasa',    '1/4 de pollo con papas',      10.00),  
+('Jugo de naranja',     'Vaso grande natural',         3.00),   
+('Agua mineral',        'Botella 625ml',               2.00),   
+('Arroz Chaufa',        'Pollo y verduras salteadas',  11.00),  
+('Tallarines Verdes',   'Con bistec apanado',          13.50),  
+('Ají de Gallina',      'Con arroz blanco y huevo',    12.50),  
+('Ceviche',             'Pescado fresco con camote',   15.00),  
+('Inca Kola',           'Botella personal 500ml',      3.50),  
+('Chicha Morada',       'Vaso grande helado',          2.50); 
 
 -- Consumos de prueba (Juan Pérez comió hoy)
 INSERT INTO consumos (cliente_id, plato_id, cantidad, precio_unit, fecha) VALUES
-(1, 1, 1, 8.50, CURDATE()),    --1 Menú del día
-(1, 4, 1, 3.00, CURDATE());    --1 Jugo de naranja
-(5, 7, 2, 13.50, CURDATE());   --1 Tallerines Verdes
+(1, 1, 1, 8.50, CURDATE()),
+(1, 4, 1, 3.00, CURDATE()),
+(5, 7, 2, 13.50, CURDATE());
 
 -- Pago de prueba
 INSERT INTO pagos (cliente_id, monto, tipo_comprobante, fecha_pago, observacion) VALUES
-(1, 11.50, 'boleta', CURDATE(), 'Pago del consumo del día');
+(1, 11.50, 'boleta', CURDATE(), 'Pago del consumo del día'),
+(2, 11.50, 'boleta', CURDATE(), 'Pago del consumo del día'),
+(3, 11.50, 'boleta', CURDATE(), 'Pago del consumo del día');
