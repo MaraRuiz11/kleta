@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/landing.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/imagen.css">
 </head>
 
 <body>
@@ -42,7 +43,7 @@
 
     <section class="projects-section">
         <div class="project-card">
-            <img src="<?php echo BASE_URL; ?>/app/image/gestion e clientes.jpg"
+            <img src="<?php echo BASE_URL; ?>/app/image/gestion_de_clientes.jpg"
                 alt="Gestión de Clientes"
                 class="project-image">
             <h3 class="project-title">Gestión de Clientes</h3>
@@ -50,7 +51,7 @@
             <a href="<?php echo BASE_URL; ?>/login" class="project-link">Acceder <i class="bi bi-arrow-right"></i></a>
         </div>
         <div class="project-card">
-            <img src="<?php echo BASE_URL; ?>/assets/img/consumos.jpg"
+            <img src="<?php echo BASE_URL; ?>/app/image/registro_de_consumo.png"
                 alt="Registro de Consumos"
                 class="project-image">
             <h3 class="project-title">Registro de Consumos</h3>
@@ -58,7 +59,7 @@
             <a href="<?php echo BASE_URL; ?>/login" class="project-link">Acceder <i class="bi bi-arrow-right"></i></a>
         </div>
         <div class="project-card">
-            <img src="<?php echo BASE_URL; ?>/assets/img/pagos.jpg"
+            <img src="<?php echo BASE_URL; ?>/app/image/control_de_pagos.png"
                 alt="Control de Pagos"
                 class="project-image">
             <h3 class="project-title">Control de Pagos</h3>
@@ -66,10 +67,10 @@
             <a href="<?php echo BASE_URL; ?>/login" class="project-link">Acceder <i class="bi bi-arrow-right"></i></a>
         </div>
         <div class="project-card">
-            <img src="<?php echo BASE_URL; ?>/assets/img/platos.jpg"
+            <img src="<?php echo BASE_URL; ?>/app/image/plato_del_dia.png"
                 alt="Platos del Día"
                 class="project-image">
-            <h3 class="project-title">Platos del ía</h3>
+            <h3 class="project-title">Platos del Día</h3>
             <p class="project-desc">Gestiona los platos disponibles para el día actual y actualiza su disponibilidad en tiempo real.</p>
             <a href="<?php echo BASE_URL; ?>/login" class="project-link">Acceder <i class="bi bi-arrow-right"></i></a>
         </div>
