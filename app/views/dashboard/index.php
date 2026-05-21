@@ -7,15 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/dashboard.css">
-    <style>
-        .stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
-        .stat-card{background:#fff;border-radius:12px;padding:20px 22px;border:1px solid rgba(0,0,0,.08)}
-        .stat-card .label{font-size:.78rem;color:#999;font-weight:500;margin-bottom:6px}
-        .stat-card .value{font-size:1.6rem;font-weight:700;color:#1a1a1a}
-        .stat-card .icon{font-size:1.4rem;margin-bottom:10px}
-        .text-accent{color:#4f46e5}
-        .text-success-custom{color:#27ae60}
-    </style>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/stat-cards.css">
+    
 </head>
 <body>
 
