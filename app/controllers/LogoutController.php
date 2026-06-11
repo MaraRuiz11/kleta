@@ -5,7 +5,7 @@ require_once __DIR__ . '/../core/Controller.php';
 class LogoutController extends Controller {
     public function index(): void {
         session_destroy();
-        header('Location: ' . BASE_URL . '/login');
+        header('Location: ' . BASE_URL );
         exit;
     }
 }
