@@ -18,7 +18,7 @@
 
     <section class="stage">
         <video class="hero-video" autoplay muted loop playsinline>
-            <source src="<?php echo BASE_URL; ?>/public/video/donde.mp4" type="video/mp4">
+            <source src="<?php echo BASE_URL; ?>/public/video/video.mp4" type="video/mp4">
         </video>
 
         <nav class="navbar" id="navbar">
