@@ -1,176 +1,164 @@
-# 🍽️ KLETA — Sistema de Venta de Comida
+# 🍽️ Sistema de Venta de Comida "KLETA"
 
-Proyecto Final PHP Web — SENATI  
-Arquitectura MVC sin frameworks externos.
-
----
-
-## Requisitos
-
-- PHP 8.1 o superior
-- MySQL 8.0 o superior
-- Servidor web con `mod_rewrite` habilitado (Apache / XAMPP / Laragon)
+Sistema web para la gestión de venta de comida con facilidades de pago diario, semanal y mensual.  
+Desarrollado como proyecto final del curso de **PHP Web** en **SENATI**.
 
 ---
 
-## Instalación
+## Índice
 
-### 1. Coloca el proyecto en tu servidor
-
-Copia la carpeta `kleta/` dentro de tu directorio web, por ejemplo:
-
-```
-C:/xampp/htdocs/kleta/
-```
-
-### 2. Crea la base de datos
-
-Abre phpMyAdmin (o tu cliente MySQL favorito) e importa el archivo:
-
-```
-kleta.sql
-```
-
-Esto creará la base de datos `kleta` con sus 5 tablas y datos de prueba.
-
-### 3. Configura el archivo `.env`
-
-Copia `.env.example` como `.env`:
-
-```bash
-cp .env.example .env
-```
-
-Edita `.env` con tus credenciales:
-
-```
-DB_HOST="localhost"
-DB_PORT=3306
-DB_DATABASE=kleta
-DB_USERNAME=root
-DB_PASSWORD=
-
-APP_URL=http://localhost/kleta
-```
-
-> `APP_URL` debe coincidir exactamente con la URL desde la que accedes al proyecto (sin barra al final).
-
-### 4. Accede al sistema
-
-Abre tu navegador en:
-
-```
-http://localhost/kleta
-```
-
-**Credenciales de prueba:**
-
-| Campo    | Valor           |
-|----------|-----------------|
-| Correo   | admin@kleta.com |
-| Contraseña | admin123      |
+1. [Descripción del Negocio](#1-descripción-del-negocio)
+2. [Identificar el Problema y Solución](#2-identificar-el-problema-y-solución)
+3. [Preanálisis](#3-preanálisis)
+   - [Necesidades](#31-necesidades)
+   - [Estudio de Viabilidad](#32-estudio-de-viabilidad)
+   - [Alcance del Sistema](#33-alcance-del-sistema)
+4. [Análisis](#4-análisis)
+   - [Definición de Requisitos](#41-definición-de-requisitos)
+     - [Requisitos Funcionales](#requisitos-funcionales)
+     - [Requisitos No Funcionales](#requisitos-no-funcionales)
+   - [Análisis de Requisitos](#42-análisis-de-requisitos)
+5. [Imágenes del Problema](#5-imágenes-del-problema)
+6. [Imágenes del Negocio](#6-imágenes-del-negocio)
 
 ---
 
-## Estructura del proyecto
+## 1. Descripción del Negocio
 
-```
-kleta/
-├── .env.example          ← Plantilla de configuración
-├── .env                  ← Tu configuración local (no subir a Git)
-├── .htaccess             ← Reescritura de URLs para el Router
-├── kleta.sql             ← Script completo de base de datos
-│
-├── app/
-│   ├── index.php         ← Punto de entrada de la app
-│   ├── config/
-│   │   └── config.php    ← Carga .env y define constantes
-│   ├── core/
-│   │   ├── App.php       ← Arranca sesión y Router
-│   │   ├── Router.php    ← Lee la URL y despacha al controller
-│   │   ├── Controller.php← Clase base con view() y requiereLogin()
-│   │   └── Database.php  ← Singleton PDO
-│   ├── models/
-│   │   ├── Login.php     ← Autenticación sobre tabla usuarios
-│   │   ├── Cliente.php   ← CRUD + saldos
-│   │   ├── Plato.php     ← CRUD del menú
-│   │   ├── Consumo.php   ← Registro de consumos diarios
-│   │   └── Pago.php      ← Registro de pagos
-│   ├── controllers/
-│   │   ├── HomeController.php
-│   │   ├── LoginController.php
-│   │   ├── LogoutController.php
-│   │   ├── DashboardController.php
-│   │   ├── ClientesController.php
-│   │   ├── PlatosController.php
-│   │   ├── ConsumosController.php
-│   │   └── PagosController.php
-│   └── views/
-│       ├── layouts/
-│       │   ├── sidebar.php
-│       │   ├── header.php
-│       │   └── footer.php
-│       ├── auth/login.php
-│       ├── home/landing.php
-│       ├── dashboard/index.php
-│       ├── clientes/{index, crear, editar}.php
-│       ├── platos/{index, crear, editar}.php
-│       ├── consumos/{index, registrar}.php
-│       └── pagos/{index, registrar}.php
-│
-└── public/
-    ├── css/
-    │   ├── dashboard.css
-    │   └── landing.css
-    ├── js/
-    │   ├── dashboard.js
-    │   └── landing.js
-    └── video/
-        └── donde.mp4     ← Pon aquí tu video de fondo
-```
+| Campo       | Detalle                                              |
+|-------------|------------------------------------------------------|
+| **Nombre**  | Restaurante Jugería "KLETA"                          |
+| **Giro**    | Financiera formal registrada por SUNAT               |
+| **Tamaño**  | Pequeña empresa, operación individual o familiar     |
+
+**Contexto:**  
+Negocio muy común en el Perú donde una pequeña familia ofrece servicio de comida a personas e instituciones con registro de boletas y facturas, cobrando diariamente, semanalmente o mensualmente, con servicio a domicilio o pedidos con reserva y recojo.
+
+**Justificación:**  
+Se necesita un sistema digital para reemplazar el cuaderno manual del cobrador, evitar errores y tener un control claro de cada consumo y pedido de los alimentos.
 
 ---
 
-## Rutas disponibles
+## 2. Identificar el Problema y Solución
 
-| URL                      | Descripción                        |
-|--------------------------|------------------------------------|
-| `/`                      | Landing page                       |
-| `/login`                 | Iniciar sesión                     |
-| `/logout`                | Cerrar sesión                      |
-| `/dashboard`             | Panel con estadísticas del día     |
-| `/clientes`              | Lista de clientes con saldos       |
-| `/clientes/crear`        | Nuevo cliente                      |
-| `/clientes/editar/{id}`  | Editar cliente                     |
-| `/clientes/eliminar/{id}`| Eliminar cliente                   |
-| `/platos`                | Lista del menú                     |
-| `/platos/crear`          | Nuevo plato                        |
-| `/platos/editar/{id}`    | Editar plato                       |
-| `/platos/eliminar/{id}`  | Eliminar plato                     |
-| `/consumos`              | Lista de consumos                  |
-| `/consumos/registrar`    | Registrar consumo                  |
-| `/consumos/eliminar/{id}`| Eliminar consumo                   |
-| `/pagos`                 | Lista de pagos                     |
-| `/pagos/registrar`       | Registrar pago                     |
-| `/pagos/eliminar/{id}`   | Eliminar pago                      |
+### Problema
+
+La persona encargada lleva el registro de ventas y pensionistas en un cuaderno o en papel, lo que genera:
+
+- Errores en los registros
+- Pérdida de información
+- Dificultad para saber cuánto debe cada cliente
+- Falta de control sobre cuántos pensionistas llegaron a comer cada día
+
+### Solución Tecnológica
+
+Desarrollar un sistema web con **PHP** y **MySQL** que permita:
+
+- Registrar clientes
+- Gestionar cobros diarios, semanales y mensuales
+- Mostrar en todo momento el estado de cada pedido
+- Consultar el historial de pagos de cada cliente
 
 ---
 
-## Base de datos — 5 tablas
+## 3. Preanálisis
 
-| Tabla      | Descripción                                      |
-|------------|--------------------------------------------------|
-| `usuarios` | Administradores del sistema                      |
-| `clientes` | Personas que consumen en KLETA                   |
-| `platos`   | Menú con precios                                 |
-| `consumos` | Qué comió cada cliente y cuándo                  |
-| `pagos`    | Pagos realizados por cada cliente                |
+### 3.1 Necesidades
+
+El Restaurante Jugería "KLETA" requiere digitalizar su proceso de gestión de ventas y cobros. Las principales necesidades identificadas son:
+
+- Controlar el consumo diario de cada pedido
+- Gestionar cobros en modalidad diaria, semanal y mensual
+- Emitir comprobantes de pago (boletas y facturas) conforme a SUNAT
+- Registrar pedidos con reserva, recojo y servicio a domicilio
+- Consultar el historial de pagos y deudas por cliente
+- Saber cuántos pensionistas asistieron en un día determinado
+
+### 3.2 Estudio de Viabilidad
+
+**Viabilidad Técnica:**  
+El sistema se desarrollará con tecnologías ampliamente disponibles y de uso libre: **PHP puro** para el backend y **MySQL** como motor de base de datos. El negocio cuenta con al menos un equipo con acceso a navegador web, lo que hace viable el uso de una aplicación web sin necesidad de instalación local.
+
+**Viabilidad Económica:**  
+Al tratarse de un proyecto académico desarrollado en SENATI, no se incurre en costos de licencias de software. El mantenimiento futuro puede ser asumido por el mismo desarrollador o un técnico básico, lo que reduce el costo operativo frente a sistemas comerciales.
+
+**Viabilidad Operativa:**  
+El sistema está diseñado para ser simple e intuitivo, adaptado al perfil del usuario (cobrador o administrador del negocio familiar). Reemplaza directamente el cuaderno manual sin requerir conocimientos técnicos avanzados.
+
+### 3.3 Alcance del Sistema
+
+El sistema cubrirá las siguientes funcionalidades dentro del contexto del Restaurante Jugería "KLETA":
+
+- **Registro de consumo:** ingreso diario de los platos consumidos por mesa o pedido
+- **Gestión de cobros:** registro de pagos diarios, semanales y mensuales con seguimiento de deudas
+- **Pedidos:** registro de pedidos con modalidad presencial, a domicilio o con reserva
+- **Reportes básicos:** listado de asistencia diaria, deudas pendientes e historial de pagos
+- **Comprobantes:** generación de boletas y facturas en formato digital
+
+**Fuera del alcance:**
+- Integración con plataformas de pago electrónico (Yape, Plin, etc.)
+- App móvil nativa
+- Módulo de inventario o control de insumos
 
 ---
 
-## Notas de seguridad
+## 4. Análisis
 
-- Las contraseñas se guardan con `MD5()` (compatible con los datos de prueba del SQL).
-- Todas las consultas usan **PDO con sentencias preparadas** para evitar SQL Injection.
-- Las vistas usan `htmlspecialchars()` para evitar XSS.
-- Las rutas protegidas verifican la sesión antes de mostrar contenido.
+### 4.1 Definición de Requisitos
+
+#### Requisitos Funcionales
+
+| ID   | Descripción |
+|------|-------------|
+| RF02 | El sistema debe registrar el consumo diario de cada cliente por fecha |
+| RF03 | El sistema debe gestionar cobros en modalidad diaria, semanal y mensual |
+| RF04 | El sistema debe mostrar el saldo pendiente de cada cliente en tiempo real |
+| RF05 | El sistema debe registrar pedidos indicando modalidad (presencial, domicilio o reserva) |
+| RF06 | El sistema debe generar un reporte diario de asistencia de pensionistas |
+| RF07 | El sistema debe registrar pagos y generar historial por cliente |
+| RF08 | El sistema debe permitir emitir boletas y facturas en formato digital |
+| RF10 | El sistema debe tener un módulo de inicio de sesión para el administrador |
+
+#### Requisitos No Funcionales
+
+| ID    | Descripción |
+|-------|-------------|
+| RNF01 | El sistema debe ser accesible desde cualquier navegador web moderno |
+| RNF02 | La interfaz debe ser simple e intuitiva para usuarios sin conocimientos técnicos |
+| RNF03 | El sistema debe responder a las solicitudes en menos de 3 segundos |
+| RNF04 | Los datos deben almacenarse de forma segura en una base de datos MySQL |
+| RNF05 | El sistema debe estar disponible durante el horario de operación del negocio |
+| RNF06 | El código debe seguir buenas prácticas de desarrollo con PHP puro |
+| RNF07 | El sistema debe ser escalable para agregar nuevos módulos en el futuro |
+
+### 4.2 Análisis de Requisitos
+
+A partir de los requisitos identificados, se determinan los siguientes módulos principales del sistema:
+
+**Módulo de Consumo Diario**  
+Registra qué platos consumió cada cliente en el día, permitiendo al cobrador llevar un control exacto sin usar papel. Se vincula directamente al módulo de cobros para calcular el monto acumulado.
+
+**Módulo de Cobros y Pagos**  
+Centraliza el registro de pagos recibidos y genera automáticamente el saldo pendiente por cliente según la modalidad (diaria, semanal o mensual). Incluye historial completo de transacciones.
+
+**Módulo de Pedidos**  
+Gestiona los pedidos con reserva anticipada o servicio a domicilio, indicando fecha, hora, dirección de entrega y estado del pedido (pendiente, en preparación, entregado).
+
+**Módulo de Reportes**  
+Genera reportes de asistencia diaria, listado de deudores, y resumen de ingresos por período, facilitando la toma de decisiones del administrador del negocio.
+
+---
+
+## 5. Imágenes del Problema
+
+![Problema 1](recursos/problema.jpeg)
+![Problema 2](recursos/problema1.jpeg)
+
+---
+
+## 6. Imágenes del Negocio
+
+![Negocio 1](recursos/negocio.jpeg)
+![Negocio 2](recursos/negocio1.jpeg)
+
+---
