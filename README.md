@@ -3,25 +3,6 @@
 Sistema web para la gestión de venta de comida con facilidades de pago diario, semanal y mensual.  
 Desarrollado como proyecto final del curso de **PHP Web** en **SENATI**.
 
----
-
-## Índice
-
-1. [Descripción del Negocio](#1-descripción-del-negocio)
-2. [Identificar el Problema y Solución](#2-identificar-el-problema-y-solución)
-3. [Preanálisis](#3-preanálisis)
-   - [Necesidades](#31-necesidades)
-   - [Estudio de Viabilidad](#32-estudio-de-viabilidad)
-   - [Alcance del Sistema](#33-alcance-del-sistema)
-4. [Análisis](#4-análisis)
-   - [Definición de Requisitos](#41-definición-de-requisitos)
-     - [Requisitos Funcionales](#requisitos-funcionales)
-     - [Requisitos No Funcionales](#requisitos-no-funcionales)
-   - [Análisis de Requisitos](#42-análisis-de-requisitos)
-5. [Imágenes del Problema](#5-imágenes-del-problema)
-6. [Imágenes del Negocio](#6-imágenes-del-negocio)
-
----
 
 ## 1. Descripción del Negocio
 
