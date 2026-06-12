@@ -129,8 +129,13 @@ Gestiona los pedidos con reserva anticipada o servicio a domicilio, indicando fe
 Genera reportes de asistencia diaria, listado de deudores, y resumen de ingresos por período, facilitando la toma de decisiones del administrador del negocio.
 
 ---
+## TRELLO
+Más info en [mi tablero de trello](https://trello.com/invite/b/69a1f6744fabd2bc76f5056f/ATTIbfa56e422ebbbfc1bcc14e69fa06404253D4341D/mi-tablero-de-trello)
 
+### DIAGRAMA DE FIGMA
+Más info en [Mi_Diseño_Figma](https://www.figma.com/design/xBM2FOR91M3RfhCMcY39Bj/Kleta_sales_system?node-id=0-1&t=O5iqWI3upuG8NMQV-1)
 ## 5. Imágenes del Problema
+
 
 ![Problema 1](recursos/problema.jpeg)
 ![Problema 2](recursos/problema1.jpeg)
