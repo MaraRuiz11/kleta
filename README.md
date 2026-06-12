@@ -141,6 +141,7 @@ Genera reportes de asistencia diaria, listado de deudores, y resumen de ingresos
 
 ![Negocio 1](recursos/negocio.jpeg)
 ![Negocio 2](recursos/negocio1.jpeg)
+![Negocio 2](recursos/negocio3.jpeg)
 
 
 ## 6. Entidad Relacion
