@@ -5,7 +5,8 @@ $rutaActual = explode('/', trim($_GET['url'] ?? 'dashboard', '/'))[0] ?: 'dashbo
 <!-- TOPBAR (solo visible en móvil) -->
 <div class="topbar">
     <div class="title-business">
-        <span><?php echo htmlspecialchars($usuario['nombre'] ?? 'Usuario'); ?></span>
+        <i class="fa-solid fa-utensils"></i>
+        <span>KLETA</span>
     </div>
     <div class="btn-menu">
         <button class="hamburger" aria-label="Abrir menú">
@@ -19,7 +20,7 @@ $rutaActual = explode('/', trim($_GET['url'] ?? 'dashboard', '/'))[0] ?: 'dashbo
 
 <!-- SIDEBAR -->
 <aside class="sidebar">
-    <div class="sidebar-logo">🍽️ KLETA</div>
+    <div class="sidebar-logo"> KLETA</div>
     <ul>
         <li>
             <a href="<?php echo BASE_URL; ?>/dashboard"
