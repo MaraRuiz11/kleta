@@ -5,6 +5,11 @@ require_once __DIR__ . '/../models/Login.php';
 
 class LoginController extends Controller {
     public function index(): void {
+        if (isset($_SESSION['usuario'])) {
+            header('Location: ' . BASE_URL . '/dashboard');
+            exit;
+        }
+
         $error = null;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
