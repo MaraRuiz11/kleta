@@ -125,5 +125,3 @@ INSERT INTO pagos (cliente_id, monto, tipo_comprobante, fecha_pago, observacion)
 (1, 11.50, 'boleta', CURDATE(), 'Pago del consumo del día'),
 (2, 11.50, 'boleta', CURDATE(), 'Pago del consumo del día'),
 (3, 11.50, 'boleta', CURDATE(), 'Pago del consumo del día');
-
-![Negocio 1](recursos/MRD.png)
