@@ -11,7 +11,7 @@
 <div class="login-wrapper">
 
     <div class="logo-section">
-        <img src="<?php echo BASE_URL; ?>/public/img/logo-kleta.png" alt="Restaurante Juguería Kleta">
+        <img src="<?php echo BASE_URL; ?>/public/img/sin-fondo.webp" alt="Restaurante Juguería Kleta">
     </div>
 
     <div class="form-section">
